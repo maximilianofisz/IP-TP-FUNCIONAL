@@ -1,0 +1,18 @@
+Red social es valida:
+	
+	-Necesita: 
+			
+			-Usuario:  	      * id>0 y |nombre|>0
+			
+			-Relaciones: 	   * usuario1, usuario2 ∈ Red social / se pueden relacionar si usuario1 != usuario2 
+								   * Para la relacion (usuario1, usuario2) solo existen una relacion o bien (usuario1,usuario2) o bien usuario2,usuario1)
+								   * No hay relaciones repetidas
+			
+			-Publicaciones: * Si existe una publicacion, el autor es de algun usuario de la red
+									* Los usuarios que likeen una publicacion tienen que pertenecer a la red
+									* No hay Publicaciones repetidas:
+											* Es decir no hay una publicacion que tenga el mismo autor y mismo texto que otra
+
+
+
+

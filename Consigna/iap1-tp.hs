@@ -1,11 +1,16 @@
 --tests
 
 usuariosTest1 :: [Usuario]
-usuariosTest = [(1,"Maximiliano") , (2,"Mauricio") , (3,"Santiago") , (4,"Lujan")]
+usuariosTest1 = [(1,"Maximiliano") , (2,"Mauricio") , (3,"Santiago") , (4,"Lujan")]
 
+relacionesTest1 :: [Relacion]
+relacionesTest1 = [( (1,"Maximiliano") , (2,"Mauricio") ) ,  ( (3,"Santiago") , (4,"Lujan") )]
 
+publicacionesTest1 :: [Publicacion]
+publicacionesTest1 = [((1,"Maximiliano"), "hola aguante bokitaaaa", [(2,"Mauricio"),(3,"Santiago"), (4,"Lujan")]),((3,"Santiago"), "alguno vende rizz???", [(2,"Mauricio"),(1,"Maximiliano"), (4,"Lujan")])]
 
-
+redSocialTest1 :: RedSocial
+redSocialTest1 = (usuariosTest1 , relacionesTest1 , publicacionesTest1)
 
 
 
@@ -56,6 +61,8 @@ likesDePublicacion (_, _, us) = us
 
 --Dada un RedSocial toma el primer elemento de la tripla y llama a la funcion iterarUsuarios sobre la lista de usuarios. 
 --Y devuelve una lista con los nombres de los usuarios.
+-- Casos: 
+        -- 
 
 nombresDeUsuarios :: RedSocial -> [String]
 nombresDeUsuarios (x,y,z) = iterarUsuarios (x)
@@ -69,7 +76,7 @@ iterarUsuarios (x:xs) = [nombreDeUsuario x] ++ iterarUsuarios xs
 
 -- describir qué hace la función: .....
 amigosDe :: RedSocial -> Usuario -> [Usuario]
-amigosDe = undefined
+amigosDe (x,y,z) a = 
 
 -- describir qué hace la función: .....
 cantidadDeAmigos :: RedSocial -> Usuario -> Int
