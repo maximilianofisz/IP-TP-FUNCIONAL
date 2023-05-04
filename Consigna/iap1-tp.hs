@@ -1,9 +1,26 @@
+--tests
+
+usuariosTest1 :: [Usuario]
+usuariosTest = [(1,"Maximiliano") , (2,"Mauricio") , (3,"Santiago") , (4,"Lujan")]
+
+
+
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------------------------------------------
+
+
 -- Completar con los datos del grupo
 --
 -- Nombre de Grupo: AlGODripmos
 -- Integrante 1: Santiago Rocca, santiagorocca17@gmail.com, 152/23
 -- Integrante 2: Mauricio Cabral, mauriciocab25@gmail.com, 1640/21
--- Integrante 3: Maximiliano Fisz, email, LU
+-- Integrante 3: Maximiliano Fisz, maxifisz@gmail.com.ar, 586/19
 -- Integrante 4: Lujan Aylan, aldanaylan@gmail.com, 685/22
 
 type Usuario = (Integer, String) -- (id, nombre)
@@ -34,10 +51,21 @@ usuarioDePublicacion (u, _, _) = u
 likesDePublicacion :: Publicacion -> [Usuario]
 likesDePublicacion (_, _, us) = us
 
--- Ejercicios
+-- Ejercicios----------------------------------------------------------------------
+
+
+--Dada un RedSocial toma el primer elemento de la tripla y llama a la funcion iterarUsuarios sobre la lista de usuarios. 
+--Y devuelve una lista con los nombres de los usuarios.
 
 nombresDeUsuarios :: RedSocial -> [String]
-nombresDeUsuarios = undefined
+nombresDeUsuarios (x,y,z) = iterarUsuarios (x)
+
+--Dada la lista de usuarios, devuelve el segundo elemento de la tupla de cada elemento de la lista. 
+
+iterarUsuarios :: [Usuario] -> [String]
+iterarUsuarios (x:[]) = [nombreDeUsuario x]
+iterarUsuarios (x:xs) = [nombreDeUsuario x] ++ iterarUsuarios xs
+
 
 -- describir qué hace la función: .....
 amigosDe :: RedSocial -> Usuario -> [Usuario]
