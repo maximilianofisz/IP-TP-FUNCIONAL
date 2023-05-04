@@ -1,10 +1,10 @@
 -- Completar con los datos del grupo
 --
--- Nombre de Grupo: xx
--- Integrante 1: Nombre Apellido, email, LU
--- Integrante 2: Nombre Apellido, email, LU
--- Integrante 3: Nombre Apellido, email, LU
--- Integrante 4: Nombre Apellido, email, LU
+-- Nombre de Grupo: AlGODripmos
+-- Integrante 1: Santiago Rocca, santiagorocca17@gmail.com, 152/23
+-- Integrante 2: Mauricio Cabral, mauriciocab25@gmail.com, 1640/21
+-- Integrante 3: Maximiliano Fisz, email, LU
+-- Integrante 4: Lujan Aylan, aldanaylan@gmail.com, 685/22
 
 type Usuario = (Integer, String) -- (id, nombre)
 type Relacion = (Usuario, Usuario) -- usuarios que se relacionan
