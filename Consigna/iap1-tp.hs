@@ -73,14 +73,26 @@ iterarUsuarios :: [Usuario] -> [String]
 iterarUsuarios (x:[]) = [nombreDeUsuario x]
 iterarUsuarios (x:xs) = [nombreDeUsuario x] ++ iterarUsuarios xs
 
+--REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR
+
+-- describir qué hace la función: ..... 
+--amigosDe :: RedSocial -> Usuario -> [Usuario]
+--amigosDe (x,(y:[]),z) a = matchRelacion y a
+--amigosDe (x,(y:ys),z) a = matchRelacion y a ++ amigosDe (x,ys,z)
+
+--matchRelacion :: [(Usuario, Usuario)] -> Usuario -> Usuario
+--matchRelacion ((x,y):zs) a | x==a = [y] 
+--                           | y==a = [x]
 
 -- describir qué hace la función: .....
-amigosDe :: RedSocial -> Usuario -> [Usuario]
-amigosDe (x,y,z) a = 
+--cantidadDeAmigos :: RedSocial -> Usuario -> Int
+--cantidadDeAmigos x a = longitud (amigosDe x a) 
 
--- describir qué hace la función: .....
-cantidadDeAmigos :: RedSocial -> Usuario -> Int
-cantidadDeAmigos = undefined
+--longitud :: (Eq t) => [t] -> Integer 
+--longitud (x:[]) = 1
+--longitud (x:xs) = 1 + longitud xs
+
+--REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR
 
 -- describir qué hace la función: .....
 usuarioConMasAmigos :: RedSocial -> Usuario
