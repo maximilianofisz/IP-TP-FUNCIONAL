@@ -86,18 +86,23 @@ matchRelacion (x,y) a | x==a = [y]
                       | otherwise = []
 
 -- describir qué hace la función: .....
---cantidadDeAmigos :: RedSocial -> Usuario -> Int
---cantidadDeAmigos x a = longitud (amigosDe x a) 
+cantidadDeAmigos :: RedSocial -> Usuario -> Int
+cantidadDeAmigos x a = longitud (amigosDe x a) 
 
---longitud :: (Eq t) => [t] -> Integer 
---longitud (x:[]) = 1
---longitud (x:xs) = 1 + longitud xs
+longitud :: (Eq t) => [t] -> Int
+longitud (x:[]) = 1
+longitud (x:xs) = 1 + longitud xs
 
 --REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR
 
 -- describir qué hace la función: .....
 usuarioConMasAmigos :: RedSocial -> Usuario
-usuarioConMasAmigos = undefined
+usuarioConMasAmigos ((x:[]),y,z) = x
+usuarioConMasAmigos (x,y,z) = comparadorDeCantidadDeAmigos (x,y,z) (head x)
+
+comparadorDeCantidadDeAmigos :: RedSocial -> Usuario -> Usuario 
+comparadorDeCantidadDeAmigos ((x:[]),y,z) c = x
+comparadorDeCantidadDeAmigos ((x:xx:xs),y,z) c | cantidadDeAmigos (((x:xs),y,z), x) > cantidadDeAmigos (((x:xs),y,z), xx) = comparadorDeCantidadDeAmigos  
 
 -- describir qué hace la función: .....
 estaRobertoCarlos :: RedSocial -> Bool
