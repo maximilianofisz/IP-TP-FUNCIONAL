@@ -76,13 +76,14 @@ iterarUsuarios (x:xs) = [nombreDeUsuario x] ++ iterarUsuarios xs
 --REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR
 
 -- describir qué hace la función: ..... 
---amigosDe :: RedSocial -> Usuario -> [Usuario]
---amigosDe (x,(y:[]),z) a = matchRelacion y a
---amigosDe (x,(y:ys),z) a = matchRelacion y a ++ amigosDe (x,ys,z)
+amigosDe :: RedSocial -> Usuario -> [Usuario]
+amigosDe (x,(y:[]),z) a = matchRelacion y a
+amigosDe (x,(y:ys),z) a = matchRelacion y a ++ amigosDe (x,ys,z) a
 
---matchRelacion :: [(Usuario, Usuario)] -> Usuario -> Usuario
---matchRelacion ((x,y):zs) a | x==a = [y] 
---                           | y==a = [x]
+matchRelacion :: (Usuario, Usuario) -> Usuario -> [Usuario]
+matchRelacion (x,y) a | x==a = [y] 
+                      | y==a = [x]
+                      | otherwise = []
 
 -- describir qué hace la función: .....
 --cantidadDeAmigos :: RedSocial -> Usuario -> Int
