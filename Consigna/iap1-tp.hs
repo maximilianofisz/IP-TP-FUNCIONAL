@@ -4,7 +4,7 @@ usuariosTest1 :: [Usuario]
 usuariosTest1 = [(1,"Maximiliano") , (2,"Mauricio") , (3,"Santiago") , (4,"Lujan")]
 
 relacionesTest1 :: [Relacion]
-relacionesTest1 = [( (1,"Maximiliano") , (2,"Mauricio") ) ,  ( (3,"Santiago") , (4,"Lujan") )]
+relacionesTest1 = [( (1,"Maximiliano") , (2,"Mauricio") ) ,  ( (3,"Santiago") , (4,"Lujan") ), ( (1,"Maximiliano") , (3,"Santiago") ), ( (1,"Maximiliano") , (4,"Lujan") )]
 
 publicacionesTest1 :: [Publicacion]
 publicacionesTest1 = [((1,"Maximiliano"), "hola aguante bokitaaaa", [(2,"Mauricio"),(3,"Santiago"), (4,"Lujan")]),((3,"Santiago"), "alguno vende rizz???", [(2,"Mauricio"),(1,"Maximiliano"), (4,"Lujan")])]
@@ -98,11 +98,14 @@ longitud (x:xs) = 1 + longitud xs
 -- describir qué hace la función: .....
 usuarioConMasAmigos :: RedSocial -> Usuario
 usuarioConMasAmigos ((x:[]),y,z) = x
-usuarioConMasAmigos (x,y,z) = comparadorDeCantidadDeAmigos (x,y,z) (head x)
+usuarioConMasAmigos (x,y,z) = comparadorDeCantidadDeAmigos (x,y,z) x (head x)
 
-comparadorDeCantidadDeAmigos :: RedSocial -> Usuario -> Usuario 
-comparadorDeCantidadDeAmigos ((x:[]),y,z) c = x
-comparadorDeCantidadDeAmigos ((x:xx:xs),y,z) c | cantidadDeAmigos (((x:xs),y,z), x) > cantidadDeAmigos (((x:xs),y,z), xx) = comparadorDeCantidadDeAmigos  
+comparadorDeCantidadDeAmigos :: RedSocial -> [Usuario] -> Usuario -> Usuario 
+comparadorDeCantidadDeAmigos ((x:[]),y,z) l u = u
+comparadorDeCantidadDeAmigos r (l:[]) u = u
+comparadorDeCantidadDeAmigos r (l:ll:xl) u | cantidadDeAmigos r l < cantidadDeAmigos r ll = comparadorDeCantidadDeAmigos r (ll:xl) ll
+                                           | otherwise = comparadorDeCantidadDeAmigos r (ll:xl) u
+
 
 -- describir qué hace la función: .....
 estaRobertoCarlos :: RedSocial -> Bool
