@@ -7,7 +7,7 @@ relacionesTest1 :: [Relacion]
 relacionesTest1 = [  ( (2,"Mauricio") , (4,"Lujan") ), ( (1,"Maximiliano") , (3,"Santiago") ), ( (4,"Lujan") , (3,"Santiago") )]
 
 publicacionesTest1 :: [Publicacion]
-publicacionesTest1 = [((1,"Maximiliano"), "hola aguante bokitaaaa", [(2,"Mauricio"),(3,"Santiago"), (4,"Lujan")]),((3,"Santiago"), "alguno vende rizz???", [(2,"Mauricio"),(1,"Maximiliano"), (4,"Lujan")])]
+publicacionesTest1 = [((1,"Maximiliano"), "hola aguante bokitaaaa", [(2,"Mauricio"),(3,"Santiago"), (4,"Lujan")]),((1,"Maximiliano"), "alguno vende rizz???", [(2,"Mauricio"),(1,"Maximiliano"), (4,"Lujan")])]
 
 redSocialTest1 :: RedSocial
 redSocialTest1 = (usuariosTest1 , relacionesTest1 , publicacionesTest1)
@@ -108,9 +108,12 @@ comparadorDeCantidadDeAmigos r (l:ll:xl) u | cantidadDeAmigos r l >= cantidadDeA
 estaRobertoCarlos :: RedSocial -> Bool
 estaRobertoCarlos = undefined
 
+
 -- describir qué hace la función: .....
 publicacionesDe :: RedSocial -> Usuario -> [Publicacion]
-publicacionesDe = undefined
+publicacionesDe (x,y,[]) u = []
+publicacionesDe (x,y,(z:zs)) u | nombreDeUsuario u == nombreDeUsuario (usuarioDePublicacion z) = [z] ++ publicacionesDe (x,y,zs) u
+                               | otherwise = publicacionesDe (x,y,zs) u
 
 -- describir qué hace la función: .....
 publicacionesQueLeGustanA :: RedSocial -> Usuario -> [Publicacion]
