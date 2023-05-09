@@ -4,7 +4,7 @@ usuariosTest1 :: [Usuario]
 usuariosTest1 = [(1,"Maximiliano") , (2,"Mauricio") , (3,"Santiago") , (4,"Lujan")]
 
 relacionesTest1 :: [Relacion]
-relacionesTest1 = [( (1,"Maximiliano") , (2,"Mauricio") ) ,  ( (3,"Santiago") , (4,"Lujan") ), ( (1,"Maximiliano") , (3,"Santiago") ), ( (1,"Maximiliano") , (4,"Lujan") )]
+relacionesTest1 = [  ( (2,"Mauricio") , (4,"Lujan") ), ( (1,"Maximiliano") , (3,"Santiago") ), ( (4,"Lujan") , (3,"Santiago") )]
 
 publicacionesTest1 :: [Publicacion]
 publicacionesTest1 = [((1,"Maximiliano"), "hola aguante bokitaaaa", [(2,"Mauricio"),(3,"Santiago"), (4,"Lujan")]),((3,"Santiago"), "alguno vende rizz???", [(2,"Mauricio"),(1,"Maximiliano"), (4,"Lujan")])]
@@ -73,7 +73,6 @@ iterarUsuarios :: [Usuario] -> [String]
 iterarUsuarios (x:[]) = [nombreDeUsuario x]
 iterarUsuarios (x:xs) = [nombreDeUsuario x] ++ iterarUsuarios xs
 
---REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR
 
 -- describir qué hace la función: ..... 
 amigosDe :: RedSocial -> Usuario -> [Usuario]
@@ -90,10 +89,9 @@ cantidadDeAmigos :: RedSocial -> Usuario -> Int
 cantidadDeAmigos x a = longitud (amigosDe x a) 
 
 longitud :: (Eq t) => [t] -> Int
+longitud [] = 0
 longitud (x:[]) = 1
 longitud (x:xs) = 1 + longitud xs
-
---REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR REVISAR
 
 -- describir qué hace la función: .....
 usuarioConMasAmigos :: RedSocial -> Usuario
@@ -103,9 +101,8 @@ usuarioConMasAmigos (x,y,z) = comparadorDeCantidadDeAmigos (x,y,z) x (head x)
 comparadorDeCantidadDeAmigos :: RedSocial -> [Usuario] -> Usuario -> Usuario 
 comparadorDeCantidadDeAmigos ((x:[]),y,z) l u = u
 comparadorDeCantidadDeAmigos r (l:[]) u = u
-comparadorDeCantidadDeAmigos r (l:ll:xl) u | cantidadDeAmigos r l < cantidadDeAmigos r ll = comparadorDeCantidadDeAmigos r (ll:xl) ll
+comparadorDeCantidadDeAmigos r (l:ll:xl) u | cantidadDeAmigos r l >= cantidadDeAmigos r ll = comparadorDeCantidadDeAmigos r (l:xl) l
                                            | otherwise = comparadorDeCantidadDeAmigos r (ll:xl) u
-
 
 -- describir qué hace la función: .....
 estaRobertoCarlos :: RedSocial -> Bool
