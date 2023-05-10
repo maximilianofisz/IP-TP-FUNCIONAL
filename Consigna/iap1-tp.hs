@@ -1,25 +1,3 @@
---tests
-
-usuariosTest1 :: [Usuario]
-usuariosTest1 = [(1,"Maximiliano") , (2,"Mauricio") , (3,"Santiago") , (4,"Lujan")]
-
-relacionesTest1 :: [Relacion]
-relacionesTest1 = [  ( (2,"Mauricio") , (4,"Lujan") ), ( (1,"Maximiliano") , (3,"Santiago") ), ( (4,"Lujan") , (3,"Santiago") )]
-
-publicacionesTest1 :: [Publicacion]
-publicacionesTest1 = [((1,"Maximiliano"), "hola aguante bokitaaaa", [(2,"Mauricio"),(3,"Santiago"), (4,"Lujan")]),((1,"Maximiliano"), "alguno vende rizz???", [(2,"Mauricio"),(1,"Maximiliano"), (4,"Lujan")])]
-
-redSocialTest1 :: RedSocial
-redSocialTest1 = (usuariosTest1 , relacionesTest1 , publicacionesTest1)
-
-
-
-
-
-
-----------------------------------------------------------------------------------------------------------------------------
-
-
 -- Completar con los datos del grupo
 --
 -- Nombre de Grupo: AlGODripmos
@@ -96,18 +74,19 @@ longitud (x:xs) = 1 + longitud xs
 -- describir qué hace la función: .....
 usuarioConMasAmigos :: RedSocial -> Usuario
 usuarioConMasAmigos ((x:[]),y,z) = x
-usuarioConMasAmigos (x,y,z) = comparadorDeCantidadDeAmigos (x,y,z) x (head x)
+usuarioConMasAmigos (x,y,z)      = comparadorDeCantidadDeAmigos (x,y,z) x (head x)
 
 comparadorDeCantidadDeAmigos :: RedSocial -> [Usuario] -> Usuario -> Usuario 
 comparadorDeCantidadDeAmigos ((x:[]),y,z) l u = u
-comparadorDeCantidadDeAmigos r (l:[]) u = u
-comparadorDeCantidadDeAmigos r (l:ll:xl) u | cantidadDeAmigos r l >= cantidadDeAmigos r ll = comparadorDeCantidadDeAmigos r (l:xl) l
-                                           | otherwise = comparadorDeCantidadDeAmigos r (ll:xl) u
+comparadorDeCantidadDeAmigos r (a:[]) u = u
+comparadorDeCantidadDeAmigos r (a:b:bs) u | cantidadDeAmigos r a >= cantidadDeAmigos r b = comparadorDeCantidadDeAmigos r (a:bs) a
+                                          | otherwise = comparadorDeCantidadDeAmigos r (b:bs) b
+
 
 -- describir qué hace la función: .....
 estaRobertoCarlos :: RedSocial -> Bool
-estaRobertoCarlos = undefined
-
+estaRobertoCarlos x | cantidadDeAmigos x (usuarioConMasAmigos x) > 100 = True
+                    | otherwise = False
 
 -- describir qué hace la función: .....
 publicacionesDe :: RedSocial -> Usuario -> [Publicacion]
@@ -117,15 +96,33 @@ publicacionesDe (x,y,(z:zs)) u | nombreDeUsuario u == nombreDeUsuario (usuarioDe
 
 -- describir qué hace la función: .....
 publicacionesQueLeGustanA :: RedSocial -> Usuario -> [Publicacion]
-publicacionesQueLeGustanA = undefined
+publicacionesQueLeGustanA (x,y,z:[]) a = usuariosGustaPublicacion z a
+publicacionesQueLeGustanA (x,y,z:zs) a = usuariosGustaPublicacion z a  ++  publicacionesQueLeGustanA (x,y,zs) a          
+
+usuariosGustaPublicacion :: Publicacion -> Usuario -> [Publicacion]
+usuariosGustaPublicacion p a | pertenece (likesDePublicacion p) a == True = [p] 
+                             | otherwise = []
+
+
+--LA USAMOS EN TIENE SEGUIDOR FIEL TAMBIEN
+pertenece :: [t] -> t -> Bool
+pertenece (x:[]) a | x == a = True
+                   | otherwise = False
+pertenece (x:xs) a | x == a = True
+                   | otherwise = False || pertenece xs a
+  
 
 -- describir qué hace la función: .....
 lesGustanLasMismasPublicaciones :: RedSocial -> Usuario -> Usuario -> Bool
-lesGustanLasMismasPublicaciones = undefined
+lesGustanLasMismasPublicaciones r a b | publicacionesQueLeGustanA  r a == publicacionesQueLeGustanA r b = True 
+                                      | otherwise = False
 
 -- describir qué hace la función: .....
 tieneUnSeguidorFiel :: RedSocial -> Usuario -> Bool
 tieneUnSeguidorFiel = undefined
+
+
+ 
 
 -- describir qué hace la función: .....
 existeSecuenciaDeAmigos :: RedSocial -> Usuario -> Usuario -> Bool
