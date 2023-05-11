@@ -1,4 +1,5 @@
 
+
 listaGeneradoraUsuarios 1  = [(1 , a ++ show (1))]
 listaGeneradoraUsuarios n  = [(n , a ++ show (n))] ++ bodoque (n-1) 
 
