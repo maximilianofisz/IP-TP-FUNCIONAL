@@ -131,16 +131,17 @@ publicacionesQueLeGustanA (x,y,z:[]) a = usuariosGustaPublicacion z a
 publicacionesQueLeGustanA (x,y,z:zs) a = usuariosGustaPublicacion z a  ++  publicacionesQueLeGustanA (x,y,zs) a          
 
 usuariosGustaPublicacion :: Publicacion -> Usuario -> [Publicacion]
-usuariosGustaPublicacion p a | pertenece (likesDePublicacion p) a == True = [p] 
+usuariosGustaPublicacion p a | pertenece a (likesDePublicacion p) == True = [p] 
                              | otherwise = []
 
 
 --LA USAMOS EN TIENE SEGUIDOR FIEL TAMBIEN
-pertenece :: (Eq t) => [t] -> t -> Bool
-pertenece (x:[]) a | x == a = True
-                   | otherwise = False
-pertenece (x:xs) a | x == a = True
-                   | otherwise = False || pertenece xs a
+pertenece :: (Eq t) => t -> [t] -> Bool
+pertenece a [] = False
+pertenece  a (x:[]) | x == a = True
+                    | otherwise = False
+pertenece  a (x:xs) | x == a = True
+                    | otherwise = False || pertenece a xs
   
 
 -- describir qué hace la función: .....
@@ -161,20 +162,20 @@ tieneUnSeguidorFiel (x,y,z) u = compararListasDeLikeadores (likesDePublicacion (
 
 -- Dada una lista de likeadores, verifica si pertenece a otras n listas de likeadores
 compararListasDeLikeadores :: [Usuario] -> [[Usuario]] -> Bool
-compararListasDeLikeadores x (y:[]) = listaPerteneceALista x y
-compararListasDeLikeadores x (y:ys) = listaPerteneceALista x y && compararListasDeLikeadores x ys
+compararListasDeLikeadores (x:[]) y = usuarioPerteneceALista x y
+compararListasDeLikeadores (x:xs) y | usuarioPerteneceALista x y == False =  compararListasDeLikeadores xs y
+                                     | otherwise = True 
+
+-- Dado una lista, dame True si pertenece a la segunda lista
+usuarioPerteneceALista :: (Eq t) => t -> [[t]] -> Bool
+usuarioPerteneceALista x [] = False
+usuarioPerteneceALista x (y:[]) = pertenece x y
+usuarioPerteneceALista x (y:ys) = pertenece x y && usuarioPerteneceALista x ys
 
 -- Dada una lista de publicaciones, devuelve sus listas de likeadores
 listasDeLikeadores :: [Publicacion] -> [[Usuario]]
 listasDeLikeadores (x:[]) = [likesDePublicacion x]
 listasDeLikeadores (x:xs) = [likesDePublicacion x] ++ listasDeLikeadores xs 
-
--- Dado una lista, dame True si pertenece a la segunda lista
-listaPerteneceALista :: (Eq t) => [t] -> [t] -> Bool
-listaPerteneceALista x [] = False
-listaPerteneceALista (x:[]) y = pertenece y x
-listaPerteneceALista (x:xs) y = pertenece y x && listaPerteneceALista xs y
- 
 
 -- describir qué hace la función: .....
 existeSecuenciaDeAmigos :: RedSocial -> Usuario -> Usuario -> Bool
