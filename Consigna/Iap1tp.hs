@@ -28,6 +28,22 @@ relacionesBodoque = [((1,"Bodoque1"),(101,"Bodoque101")),((1,"Bodoque1"),(100,"B
 publciacionesBodoque = []
 
 
+-- test secuencia de amigos
+
+usuariosTestS :: [Usuario]
+usuariosTestS = [(1,"Maximiliano") , (2,"Mauricio") , (3,"Santiago") , (4,"Lujan"), (5, "Gaspar"), (6, "Bodoque")]
+
+relacionesTestS :: [Relacion]
+relacionesTestS = [  ( (1,"Maximiliano") , (4,"Lujan") ), ( (1,"Maximiliano") , (3,"Santiago") ), ( (4,"Lujan") , (5,"Gaspar") ), ( (3,"Santiago") , (6,"Bodoque") ), ( (3,"Santiago") , (2,"Mauricio") )  ]
+
+publicacionesTestS :: [Publicacion]
+publicacionesTestS = [((1,"Maximiliano"), "hola aguante bokitaaaa", [(2,"Mauricio"),(3,"Santiago"), (4,"Lujan")]),((1,"Maximiliano"), "alguno vende rizz???", [(2,"Mauricio"),(1,"Maximiliano"), (4,"Lujan")])]
+
+redSocialTestS :: RedSocial
+redSocialTestS = (usuariosTestS , relacionesTestS , publicacionesTestS)
+
+
+
 -- Completar con los datos del grupo
 --
 -- Nombre de Grupo: AlGODripmos
@@ -177,6 +193,23 @@ listasDeLikeadores :: [Publicacion] -> [[Usuario]]
 listasDeLikeadores (x:[]) = [likesDePublicacion x]
 listasDeLikeadores (x:xs) = [likesDePublicacion x] ++ listasDeLikeadores xs 
 
+-- Dado [1], [5] amigos que quiero conectar:
+-- Agarro la lista de amigos de [1]
+        -- Si esa lista tiene a [5] entonces True
+        -- Sino, agarro la lista de amigos del primer amigo de [1] ([2])
+                -- Si esa lista tiene a [5] entonces True
+                -- Esta lista no tiene mas amigos
+        -- agarro la lista de amigos del segundo amigo de [2] ([3])
+                -- La lista contiene a [5] entonces True
+                -- Si la lista tuviera otro amigo distinto ([4]) que no tiene otros amigos, daria False
+
+-- ESTA MAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAL (quiza es corregible?)
 -- describir qué hace la función: .....
 existeSecuenciaDeAmigos :: RedSocial -> Usuario -> Usuario -> Bool
-existeSecuenciaDeAmigos = undefined
+existeSecuenciaDeAmigos r i f = revisarListaDeAmigos r (amigosDe r i) f
+
+revisarListaDeAmigos :: RedSocial -> [Usuario] -> Usuario -> Bool
+revisarListaDeAmigos r (x:xs) f | pertenece f (x:xs) = True
+                                | longitud (amigosDe r x) == 1 && longitud xs == 0 = False
+                                | longitud (amigosDe r x) == 1 = False || revisarListaDeAmigos r xs f 
+                                | otherwise = False || revisarListaDeAmigos r (amigosDe r x) f || revisarListaDeAmigos r xs f
