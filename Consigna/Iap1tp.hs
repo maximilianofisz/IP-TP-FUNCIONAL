@@ -34,7 +34,7 @@ usuariosTestS :: [Usuario]
 usuariosTestS = [(1,"Maximiliano") , (2,"Mauricio") , (3,"Santiago") , (4,"Lujan"), (5, "Gaspar"), (6, "Bodoque")]
 
 relacionesTestS :: [Relacion]
-relacionesTestS = [  ( (1,"Maximiliano") , (4,"Lujan") ), ( (1,"Maximiliano") , (3,"Santiago") ), ( (4,"Lujan") , (5,"Gaspar") ), ( (3,"Santiago") , (6,"Bodoque") ), ( (3,"Santiago") , (2,"Mauricio") )  ]
+relacionesTestS = [  ( (1,"Maximiliano") , (3,"Santiago") ), ( (3,"Santigo") , (4,"Lujan") ), ( (4, "Lujan"), (2,"Mauricio") )  ]
 
 publicacionesTestS :: [Publicacion]
 publicacionesTestS = [((1,"Maximiliano"), "hola aguante bokitaaaa", [(2,"Mauricio"),(3,"Santiago"), (4,"Lujan")]),((1,"Maximiliano"), "alguno vende rizz???", [(2,"Mauricio"),(1,"Maximiliano"), (4,"Lujan")])]
@@ -205,11 +205,37 @@ listasDeLikeadores (x:xs) = [likesDePublicacion x] ++ listasDeLikeadores xs
 
 -- ESTA MAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAL (quiza es corregible?)
 -- describir qué hace la función: .....
-existeSecuenciaDeAmigos :: RedSocial -> Usuario -> Usuario -> Bool
-existeSecuenciaDeAmigos r i f = revisarListaDeAmigos r (amigosDe r i) f
+--existeSecuenciaDeAmigos :: RedSocial -> Usuario -> Usuario -> Bool
+--existeSecuenciaDeAmigos r i f = revisarListaDeAmigos r (amigosDe r i) f
 
-revisarListaDeAmigos :: RedSocial -> [Usuario] -> Usuario -> Bool
-revisarListaDeAmigos r (x:xs) f | pertenece f (x:xs) = True
-                                | longitud (amigosDe r x) == 1 && longitud xs == 0 = False
-                                | longitud (amigosDe r x) == 1 = False || revisarListaDeAmigos r xs f 
-                                | otherwise = False || revisarListaDeAmigos r (amigosDe r x) f || revisarListaDeAmigos r xs f
+--revisarListaDeAmigos :: RedSocial -> [Usuario] -> Usuario -> Bool
+--revisarListaDeAmigos r (x:xs) f | pertenece f (x:xs) = True
+--                                | longitud (amigosDe r x) == 1 && longitud xs == 0 = False
+--                                | longitud (amigosDe r x) == 1 = False || revisarListaDeAmigos r xs f 
+--                                | otherwise = False || revisarListaDeAmigos r (amigosDe r x) f || revisarListaDeAmigos r xs f
+
+existeSecuenciaDeAmigos :: RedSocial -> Usuario -> Usuario -> [Usuario]
+existeSecuenciaDeAmigos r i f = (generadoraDelConjunto r (amigosDe r i) [])
+
+generadoraDelConjunto :: RedSocial -> [Usuario] -> [Usuario]-> [Usuario]
+generadoraDelConjunto r (x:xs) c | pertenece x c == True = generadoraDelConjunto r xs c
+                                 | pertenece x c == False && longitud (amigosDe r x) == 1 = [x] ++ generadoraDelConjunto r xs c
+                                 |       
+
+
+
+
+-- Dado una lista, dame True si pertenece a la segunda lista
+listaPerteneceALista :: (Eq t) => [t] -> [t] -> Bool
+listaPerteneceALista x [] = False
+listaPerteneceALista (x:[]) y = pertenece x y
+listaPerteneceALista (x:xs) y = pertenece x y && listaPerteneceALista xs y
+
+
+eliminarRepetidos :: (Eq t) => [t] -> [t]
+eliminarRepetidos [] = []
+eliminarRepetidos (x:xs) | pertenece x xs = eliminarRepetidos xs
+                         | otherwise = [x] ++ eliminarRepetidos xs
+
+                                 
+
