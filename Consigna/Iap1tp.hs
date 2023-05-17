@@ -193,48 +193,11 @@ listasDeLikeadores :: [Publicacion] -> [[Usuario]]
 listasDeLikeadores (x:[]) = [likesDePublicacion x]
 listasDeLikeadores (x:xs) = [likesDePublicacion x] ++ listasDeLikeadores xs 
 
--- Dado [1], [5] amigos que quiero conectar:
--- Agarro la lista de amigos de [1]
-        -- Si esa lista tiene a [5] entonces True
-        -- Sino, agarro la lista de amigos del primer amigo de [1] ([2])
-                -- Si esa lista tiene a [5] entonces True
-                -- Esta lista no tiene mas amigos
-        -- agarro la lista de amigos del segundo amigo de [2] ([3])
-                -- La lista contiene a [5] entonces True
-                -- Si la lista tuviera otro amigo distinto ([4]) que no tiene otros amigos, daria False
-
--- ESTA MAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAL (quiza es corregible?)
--- describir qué hace la función: .....
---existeSecuenciaDeAmigos r i f = revisarListaDeAmigos r (amigosDe r i) f
-
---revisarListaDeAmigos :: RedSocial -> [Usuario] -> Usuario -> Bool
---revisarListaDeAmigos r (x:xs) f | pertenece f (x:xs) = True
-                                -- longitud (amigosDe r x) == 1 && longitud xs == 0 = False
-                                -- longitud (amigosDe r x) == 1 = False || revisarListaDeAmigos r xs f 
-                                -- otherwise = False || revisarListaDeAmigos r (amigosDe r x) f || revisarListaDeAmigos r xs f
-
---existeSecuenciaDeAmigos :: RedSocial -> Usuario -> Usuario -> Bool
---existeSecuenciaDeAmigos z a b | pertenece b Listadeamigos  AmigosDe z a = True
---                              | otherwise = False
-
-
---listadeamigos :: RedSocial -> [Usuario] -> [Usuario]
---listadeamigos (x:[]) lista = recorredorDeListas (amigosDe z x) lista 
---listadeamigos (x:xs) lista = recorredorDeListas (amigosDe z x) lista
-
---recorredorDeListas :: [usuario] -> [Usuario] 
---recorredorDeListas (x:[]) actlist | pertenece x actlist = actlist ++ [] 
---                                  | otherwise = actlist ++ [x]   
---recorredorDeListas (x:xs) actlist | pertenece x actlist = [] ++ recorredorDeListas xs
---                                  | otherwise = actlist ++ [x] ++ recorredorDeListas xs  
-
 
 existeSecuenciaDeAmigos :: RedSocial -> Usuario -> Usuario -> Bool
 existeSecuenciaDeAmigos r i f = pertenece f (recorredorDeListas r (amigosDe r i) (amigosDe r i)) 
---b(c)
---c(b,f)
---[a,b,c] - [a,b,c]
---[b,c,d,e] - [a,b,c,d,e]
+
+
 recorredorDeListas :: RedSocial -> [Usuario] -> [Usuario] -> [Usuario]
 recorredorDeListas r (x:[]) i | listaPerteneceALista (amigosDe r x) i = i
                               | otherwise = recorredorDeListas r (eliminarRepetidos(amigosDe r x)) (eliminarRepetidos(i++(amigosDe r x)))
