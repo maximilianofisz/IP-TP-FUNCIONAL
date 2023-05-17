@@ -229,8 +229,8 @@ listasDeLikeadores (x:xs) = [likesDePublicacion x] ++ listasDeLikeadores xs
 --                                  | otherwise = actlist ++ [x] ++ recorredorDeListas xs  
 
 
-existeSecuenciaDeAmigos :: RedSocial -> Usuario -> Usuario -> [Usuario]
-existeSecuenciaDeAmigos r i f = recorredorDeListas r (amigosDe r i) (amigosDe r i) 
+existeSecuenciaDeAmigos :: RedSocial -> Usuario -> Usuario -> Bool
+existeSecuenciaDeAmigos r i f = pertenece f (recorredorDeListas r (amigosDe r i) (amigosDe r i)) 
 --b(c)
 --c(b,f)
 --[a,b,c] - [a,b,c]
