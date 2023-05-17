@@ -236,12 +236,11 @@ existeSecuenciaDeAmigos r i f = recorredorDeListas r (amigosDe r i) (amigosDe r 
 --[a,b,c] - [a,b,c]
 --[b,c,d,e] - [a,b,c,d,e]
 recorredorDeListas :: RedSocial -> [Usuario] -> [Usuario] -> [Usuario]
-recorredorDeListas r (x:[]) i | listaPerteneceALista (amigosDe r x) (i) = i
-                              | otherwise = recorredorDeListas r (eliminarRepetidos())
-recorredorDeListas r (x:xs) i = recorredorDeListas r (eliminarRepetidos(xs++amigosDe r x)) (eliminarRepetidos(i++amigosDe r x)) 
+recorredorDeListas r (x:xs) i | longitud xs == 0 && listaPerteneceALista (amigosDe r x) i = i
+                              | longitud xs == 0 = recorredorDeListas r (eliminarRepetidos(amigosDe r x)) (eliminarRepetidos(i++(amigosDe r x)))
+                              | listaPerteneceALista (amigosDe r x) i = recorredorDeListas r xs i
+                              | otherwise = recorredorDeListas r (eliminarRepetidos(xs++amigosDe r x)) (eliminarRepetidos(i++amigosDe r x)) 
                                 
-concatenarAmigos :: [Usuario] -> [Usuario] -> [Usuario]
-concatenarAmigos a b = eliminarRepetidos (a++b)
 
 
 eliminarRepetidos :: (Eq t) => [t] -> [t]
