@@ -34,7 +34,7 @@ usuariosTestS :: [Usuario]
 usuariosTestS = [(1,"Maximiliano") , (2,"Mauricio") , (3,"Santiago") , (4,"Lujan"), (5, "Gaspar"), (6, "Bodoque")]
 
 relacionesTestS :: [Relacion]
-relacionesTestS = [  ( (1,"Maximiliano") , (4,"Lujan") ), ( (1,"Maximiliano") , (3,"Santiago") ), ( (4,"Lujan") , (5,"Gaspar") ), ( (3,"Santiago") , (6,"Bodoque") ), ( (3,"Santiago") , (2,"Mauricio") )  ]
+relacionesTestS = [  ( (1,"Maximiliano") , (4,"Lujan") ), ( (4,"Lujan") , (3,"Santiago") ), ( (3,"Santiago") , (5,"Gaspar") ), ( (5,"Gaspar") , (6,"Bodoque") ), ( (6,"Bodoque") , (2,"Mauricio") )  ]
 
 publicacionesTestS :: [Publicacion]
 publicacionesTestS = [((1,"Maximiliano"), "hola aguante bokitaaaa", [(2,"Mauricio"),(3,"Santiago"), (4,"Lujan")]),((1,"Maximiliano"), "alguno vende rizz???", [(2,"Mauricio"),(1,"Maximiliano"), (4,"Lujan")])]
@@ -215,7 +215,7 @@ listasDeLikeadores (x:xs) = [likesDePublicacion x] ++ listasDeLikeadores xs
 
 --existeSecuenciaDeAmigos :: RedSocial -> Usuario -> Usuario -> Bool
 --existeSecuenciaDeAmigos z a b | pertenece b Listadeamigos  AmigosDe z a = True
-                              | otherwise = False
+--                              | otherwise = False
 
 
 --listadeamigos :: RedSocial -> [Usuario] -> [Usuario]
@@ -229,13 +229,16 @@ listasDeLikeadores (x:xs) = [likesDePublicacion x] ++ listasDeLikeadores xs
 --                                  | otherwise = actlist ++ [x] ++ recorredorDeListas xs  
 
 
-existeSecuenciaDeAmigos :: RedSocial -> Usuario -> Usuario -> Bool
+existeSecuenciaDeAmigos :: RedSocial -> Usuario -> Usuario -> [Usuario]
 existeSecuenciaDeAmigos r i f = recorredorDeListas r (amigosDe r i) (amigosDe r i) 
-
+--b(c)
+--c(b,f)
+--[a,b,c] - [a,b,c]
+--[b,c,d,e] - [a,b,c,d,e]
 recorredorDeListas :: RedSocial -> [Usuario] -> [Usuario] -> [Usuario]
-recorredorDeListas r (x:[]) i e | listaPerteneceALista (amigosDe x r) (i) = i
-                                | otherwise = recorredorDeListas r (amigosDe r x) (i++amigosDe r x)
-recorredorDeListas r (x:xs) i e = recorredorDeListas r (xs++amigosDe r x) (i++amigosDe r x) 
+recorredorDeListas r (x:[]) i | listaPerteneceALista (amigosDe r x) (i) = i
+                              | otherwise = recorredorDeListas r (eliminarRepetidos())
+recorredorDeListas r (x:xs) i = recorredorDeListas r (eliminarRepetidos(xs++amigosDe r x)) (eliminarRepetidos(i++amigosDe r x)) 
                                 
 concatenarAmigos :: [Usuario] -> [Usuario] -> [Usuario]
 concatenarAmigos a b = eliminarRepetidos (a++b)
@@ -246,7 +249,8 @@ eliminarRepetidos [] = []
 eliminarRepetidos (x:xs) | pertenece x xs = eliminarRepetidos xs
                          | otherwise = [x] ++ eliminarRepetidos xs
 
-listaPerteneceALista :: (Eq t) => t -> [t] -> Bool
-listaPerteneceALista x [] = False
-listaPerteneceALista x (y:[]) = pertenece x y
-listaPerteneceALista x (y:ys) = pertenece x y && listaPerteneceALista x ys
+listaPerteneceALista :: (Eq t) => [t] -> [t] -> Bool
+listaPerteneceALista [] y = True
+listaPerteneceALista (x:[]) y = pertenece x y   
+listaPerteneceALista (x:xs) y | pertenece x y = True && listaPerteneceALista xs y
+                              | otherwise = False && listaPerteneceALista xs y 
