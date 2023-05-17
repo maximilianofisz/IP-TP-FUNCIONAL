@@ -229,19 +229,18 @@ listasDeLikeadores (x:xs) = [likesDePublicacion x] ++ listasDeLikeadores xs
 --                                  | otherwise = actlist ++ [x] ++ recorredorDeListas xs  
 
 
-existeSecuenciaDeAmigos :: RedSocial -> Usuario -> Usuario -> [Usuario]
-existeSecuenciaDeAmigos r i f = recorredorDeListas r (amigosDe r i) (amigosDe r i) 
+existeSecuenciaDeAmigos :: RedSocial -> Usuario -> Usuario -> Bool
+existeSecuenciaDeAmigos r i f = pertenece f (recorredorDeListas r (amigosDe r i) (amigosDe r i))
 --b(c)
 --c(b,f)
 --[a,b,c] - [a,b,c]
 --[b,c,d,e] - [a,b,c,d,e]
 recorredorDeListas :: RedSocial -> [Usuario] -> [Usuario] -> [Usuario]
-recorredorDeListas r (x:xs) i | longitud xs == 0 && listaPerteneceALista (amigosDe r x) i = i
-                              | longitud xs == 0 = recorredorDeListas r (eliminarRepetidos(amigosDe r x)) (eliminarRepetidos(i++(amigosDe r x)))
-                              | listaPerteneceALista (amigosDe r x) i = recorredorDeListas r xs i
+recorredorDeListas r (x:[]) i | listaPerteneceALista (amigosDe r x) i = i
+                              | otherwise = recorredorDeListas r (eliminarRepetidos(amigosDe r x)) (eliminarRepetidos(i++(amigosDe r x)))
+recorredorDeListas r (x:xs) i | listaPerteneceALista (amigosDe r x) i = recorredorDeListas r xs i
                               | otherwise = recorredorDeListas r (eliminarRepetidos(xs++amigosDe r x)) (eliminarRepetidos(i++amigosDe r x)) 
                                 
-
 
 eliminarRepetidos :: (Eq t) => [t] -> [t]
 eliminarRepetidos [] = []
