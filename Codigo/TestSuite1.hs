@@ -1,6 +1,7 @@
 module TestSuite1 where
 import Test.HUnit
 import Solucion
+
 --nombresDeUsuarios :: RedSocial -> [String]
 --nombresDeUsuarios (x,y,z) = iterarUsuarios (x)
 
