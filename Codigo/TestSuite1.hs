@@ -17,6 +17,6 @@ ts1_3redsocial = ([(1,"Maximiliano"), (2,"Mauricio"),(3,"Lujan")],[],[])
 testSuite1 = test [
     " nombresDeUsuarios 1" ~: (nombresDeUsuarios ts1_1redsocial) ~?= [],
     " nombresDeUsuarios 2" ~: (nombresDeUsuarios ts1_2redsocial) ~?= ["Maximiliano"],
-    " nombresDeUsuarios 2" ~: (nombresDeUsuarios ts1_3redsocial) ~?= ["Maximiliano", "Mauricio", "Lujan"]
+    " nombresDeUsuarios 3" ~: (nombresDeUsuarios ts1_3redsocial) ~?= ["Maximiliano", "Mauricio", "Lujan"]
  ]
 

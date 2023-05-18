@@ -80,6 +80,7 @@ iterarUsuarios (x:xs) = [nombreDeUsuario x] ++ iterarUsuarios xs
 
 -- Dada una red social y un usuario de esta, devuelve una lista de los usuarios amigos de este usuario.
 amigosDe :: RedSocial -> Usuario -> [Usuario]
+amigosDe (x,[],z) a = []
 amigosDe (x,(y:[]),z) a = matchRelacion y a
 amigosDe (x,(y:ys),z) a = matchRelacion y a ++ amigosDe (x,ys,z) a
 
