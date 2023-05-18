@@ -1,6 +1,6 @@
 import Test.HUnit
 import Solucion
-import TestSuit1
+import TestSuite1
 
 main = runTestTT todosLosTests
 
