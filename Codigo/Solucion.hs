@@ -73,6 +73,7 @@ nombresDeUsuarios :: RedSocial -> [String]
 nombresDeUsuarios (x,y,z) = iterarUsuarios (x)
 
 iterarUsuarios :: [Usuario] -> [String]
+iterarUsuarios [] = []
 iterarUsuarios (x:[]) = [nombreDeUsuario x]
 iterarUsuarios (x:xs) = [nombreDeUsuario x] ++ iterarUsuarios xs
 
