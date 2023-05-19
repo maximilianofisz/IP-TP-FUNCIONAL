@@ -8,6 +8,7 @@ import TestSuite5
 import TestSuite6
 import TestSuite8
 import TestSuite9
+import TestSuite10
 
 
 main = runTestTT todosLosTests
@@ -15,7 +16,7 @@ main = runTestTT todosLosTests
 
 --testSuite1 = test 
 
-todosLosTests = test [testSuite0, testSuite1, testSuite2, testSuite3, testSuite4, testSuite5, testSuite6, testSuite8, testSuite9] 
+todosLosTests = test [testSuite0, testSuite1, testSuite2, testSuite3, testSuite4, testSuite5, testSuite6, testSuite8, testSuite9, testSuite10] 
 testSuite0 = test [
     " nombresDeUsuarios 1" ~: (nombresDeUsuarios redA) ~?= ["Juan","Natalia","Pedro","Mariela"],
 

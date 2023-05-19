@@ -162,6 +162,7 @@ existeSecuenciaDeAmigos :: RedSocial -> Usuario -> Usuario -> Bool
 existeSecuenciaDeAmigos r i f = pertenece f (recorredorDeListas r (amigosDe r i) (amigosDe r i)) 
 
 recorredorDeListas :: RedSocial -> [Usuario] -> [Usuario] -> [Usuario]
+recorredorDeListas r [] i = []
 recorredorDeListas r (x:[]) i | listaPerteneceALista (amigosDe r x) i = i
                               | otherwise = recorredorDeListas r (eliminarRepetidos(amigosDe r x)) (eliminarRepetidos(i++(amigosDe r x)))
 recorredorDeListas r (x:xs) i | listaPerteneceALista (amigosDe r x) i = recorredorDeListas r xs i
