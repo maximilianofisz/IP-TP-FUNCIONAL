@@ -3,7 +3,6 @@ import Test.HUnit
 import Solucion
 
 -- Datos para test suite 2
-
 ts2_relacion1 = ((1, "Maximiliano"),(2, "Lujan"))
 ts2_relacion2 = ((1, "Maximiliano"),(3, "Mauricio"))
 ts2_relacion3 = ((1, "Maximiliano"),(4, "Santiago"))

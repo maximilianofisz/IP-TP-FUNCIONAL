@@ -2,11 +2,7 @@ module TestSuite5 where
 import Test.HUnit
 import Solucion
 
--- Dada una red social nos devuelve True si Roberto Carlos pertenece a ella (un usuario con más de 100 amigos) o False si no pertenece a esta.
---estaRobertoCarlos :: RedSocial -> Bool
---estaRobertoCarlos x | cantidadDeAmigos x (usuarioConMasAmigos x) > 100 = True
---                    | otherwise = False
-
+-- Datos para test suite 5
 ts5_1redsocial = ([],[],[])
 ts5_2redsocial = (ts5_usuariosRobertoCarlos,ts5_relacionesRobertoCarloIgualA10,[])
 ts5_3redsocial = (ts5_usuariosRobertoCarlos,ts5_relacionesRobertoCarloMayorA10,[])

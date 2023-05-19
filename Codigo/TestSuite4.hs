@@ -2,18 +2,7 @@ module TestSuite4 where
 import Test.HUnit
 import Solucion
 
--- Dada una red social, devuelve un usuario que tenga el mayor numero de amigos.
---usuarioConMasAmigos :: RedSocial -> Usuario
---usuarioConMasAmigos ((x:[]),y,z) = x
---usuarioConMasAmigos (x,y,z) = comparadorDeCantidadDeAmigos (x,y,z) x (head x)
-
---comparadorDeCantidadDeAmigos :: RedSocial -> [Usuario] -> Usuario -> Usuario 
---comparadorDeCantidadDeAmigos ((x:[]),y,z) l u = u
---comparadorDeCantidadDeAmigos r (a:[]) u = u
---comparadorDeCantidadDeAmigos r (a:b:bs) u | cantidadDeAmigos r a >= cantidadDeAmigos r b = comparadorDeCantidadDeAmigos r (a:bs) a
---                                          | otherwise = comparadorDeCantidadDeAmigos r (b:bs) b
 -- Datos para test suite 4
-
 ts4_relacion1 = ((1, "Maximiliano"),(2, "Lujan"))
 ts4_relacion2 = ((1, "Maximiliano"),(3, "Mauricio"))
 ts4_relacion3 = ((1, "Maximiliano"),(4, "Santiago"))
