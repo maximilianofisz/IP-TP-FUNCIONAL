@@ -1,4 +1,4 @@
-module TestSuite1 where
+module TestSuite10 where
 import Test.HUnit
 import Solucion
 
