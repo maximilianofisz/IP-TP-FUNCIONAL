@@ -43,7 +43,7 @@ pertenece a [] = False
 pertenece  a (x:[]) | x == a = True
                     | otherwise = False
 pertenece  a (x:xs) | x == a = True
-                    | otherwise = pertenece a xs
+                    | otherwise = False || pertenece a xs
 
 longitud :: (Eq t) => [t] -> Int
 longitud [] = 0
@@ -63,8 +63,8 @@ eliminarRepetidos (x:xs) | pertenece x xs = eliminarRepetidos xs
 listaPerteneceALista :: (Eq t) => [t] -> [t] -> Bool
 listaPerteneceALista [] y = True
 listaPerteneceALista (x:[]) y = pertenece x y   
-listaPerteneceALista (x:xs) y | pertenece x y = listaPerteneceALista xs y
-                              | otherwise = listaPerteneceALista xs y
+listaPerteneceALista (x:xs) y | pertenece x y = True && listaPerteneceALista xs y
+                              | otherwise = False && listaPerteneceALista xs y
 
 -- Ejercicios----------------------------------------------------------------------
 
