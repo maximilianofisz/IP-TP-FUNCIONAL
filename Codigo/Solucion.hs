@@ -109,7 +109,7 @@ comparadorDeCantidadDeAmigos r (a:b:bs) u | cantidadDeAmigos r a >= cantidadDeAm
 
 -- Dada una red social nos devuelve True si Roberto Carlos pertenece a ella (un usuario con más de 100 amigos) o False si no pertenece a esta.
 estaRobertoCarlos :: RedSocial -> Bool
-estaRobertoCarlos x | cantidadDeAmigos x (usuarioConMasAmigos x) > 100 = True
+estaRobertoCarlos x | cantidadDeAmigos x (usuarioConMasAmigos x) > 10 = True
                     | otherwise = False
 
 
