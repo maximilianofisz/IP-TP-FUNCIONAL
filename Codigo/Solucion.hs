@@ -140,9 +140,14 @@ lesGustanLasMismasPublicaciones r a b | publicacionesQueLeGustanA  r a == public
 -- Dada una red social y un usuario de esta, nos devuelve True si a algun otro usuario de la red social le gustan todas las publicaciones de este.
 -- De lo contrario, devuelve False.
 tieneUnSeguidorFiel :: RedSocial -> Usuario -> Bool
-tieneUnSeguidorFiel (x,y,z) u = compararListasDeLikeadores (likesDePublicacion ((head (publicacionesDe (x,y,z) u)))) (listasDeLikeadores (publicacionesDe (x,y,z) u))
+tieneUnSeguidorFiel (x,y,[]) u = False
+tieneUnSeguidorFiel (x,y,z) u | longitud (publicacionesDe (x,y,z) u) == 0 = False
+                              | longitud (likesDePublicacion ((head (publicacionesDe (x,y,z) u)))) == 0 = False
+                              | longitud (likesDePublicacion ((head (publicacionesDe (x,y,z) u)))) == 1 && head (likesDePublicacion ((head (publicacionesDe (x,y,z) u)))) == u = False
+                              | otherwise = compararListasDeLikeadores (likesDePublicacion ((head (publicacionesDe (x,y,z) u)))) (listasDeLikeadores (publicacionesDe (x,y,z) u))
 
 compararListasDeLikeadores :: [Usuario] -> [[Usuario]] -> Bool
+compararListasDeLikeadores [] y = False
 compararListasDeLikeadores (x:[]) y = usuarioPerteneceALista x y
 compararListasDeLikeadores (x:xs) y | usuarioPerteneceALista x y == False = compararListasDeLikeadores xs y
                                     | otherwise = True 
