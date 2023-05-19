@@ -130,7 +130,7 @@ usuariosGustaPublicacion p a | pertenece a (likesDePublicacion p) == True = [p]
                              | otherwise = []
 
 
--- Dada una red social y dos usuarios de esta, nos devuelve True si a ambos usuarios son les gustan las mismas publicaciones.
+-- Dada una red social y dos usuarios de esta, nos devuelve True si a ambos usuarios les gustan las mismas publicaciones.
 -- De lo contrario, devuelve False.
 lesGustanLasMismasPublicaciones :: RedSocial -> Usuario -> Usuario -> Bool
 lesGustanLasMismasPublicaciones r a b | publicacionesQueLeGustanA  r a == publicacionesQueLeGustanA r b = True 
