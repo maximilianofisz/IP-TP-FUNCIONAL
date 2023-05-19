@@ -25,10 +25,10 @@ publicaciones :: RedSocial -> [Publicacion]
 publicaciones (_, _, ps) = ps
 
 idDeUsuario :: Usuario -> Integer
-idDeUsuario (id, _) = id 
+idDeUsuario (id, _) = id
 
 nombreDeUsuario :: Usuario -> String
-nombreDeUsuario (_, nombre) = nombre 
+nombreDeUsuario (_, nombre) = nombre
 
 usuarioDePublicacion :: Publicacion -> Usuario
 usuarioDePublicacion (u, _, _) = u
@@ -43,7 +43,7 @@ pertenece a [] = False
 pertenece  a (x:[]) | x == a = True
                     | otherwise = False
 pertenece  a (x:xs) | x == a = True
-                    | otherwise = False || pertenece a xs
+                    | otherwise = pertenece a xs
 
 longitud :: (Eq t) => [t] -> Int
 longitud [] = 0
@@ -63,8 +63,8 @@ eliminarRepetidos (x:xs) | pertenece x xs = eliminarRepetidos xs
 listaPerteneceALista :: (Eq t) => [t] -> [t] -> Bool
 listaPerteneceALista [] y = True
 listaPerteneceALista (x:[]) y = pertenece x y   
-listaPerteneceALista (x:xs) y | pertenece x y = True && listaPerteneceALista xs y
-                              | otherwise = False && listaPerteneceALista xs y
+listaPerteneceALista (x:xs) y | pertenece x y = listaPerteneceALista xs y
+                              | otherwise = listaPerteneceALista xs y
 
 -- Ejercicios----------------------------------------------------------------------
 
@@ -85,14 +85,14 @@ amigosDe (x,(y:[]),z) a = matchRelacion y a
 amigosDe (x,(y:ys),z) a = matchRelacion y a ++ amigosDe (x,ys,z) a
 
 matchRelacion :: (Usuario, Usuario) -> Usuario -> [Usuario]
-matchRelacion (x,y) a | x==a = [y] 
+matchRelacion (x,y) a | x==a = [y]
                       | y==a = [x]
                       | otherwise = []
 
 
 -- Dada una red social y un usuario de esta, devuelve la cantidad de amigos de este usuario.
 cantidadDeAmigos :: RedSocial -> Usuario -> Int
-cantidadDeAmigos x a = longitud (amigosDe x a) 
+cantidadDeAmigos x a = longitud (amigosDe x a)
 
 
 -- Dada una red social, devuelve un usuario que tenga el mayor numero de amigos.
@@ -126,7 +126,7 @@ publicacionesQueLeGustanA (x,y,z:[]) a = usuariosGustaPublicacion z a
 publicacionesQueLeGustanA (x,y,z:zs) a = usuariosGustaPublicacion z a ++ publicacionesQueLeGustanA (x,y,zs) a          
 
 usuariosGustaPublicacion :: Publicacion -> Usuario -> [Publicacion]
-usuariosGustaPublicacion p a | pertenece a (likesDePublicacion p) == True = [p] 
+usuariosGustaPublicacion p a | pertenece a (likesDePublicacion p) = [p] 
                              | otherwise = []
 
 
