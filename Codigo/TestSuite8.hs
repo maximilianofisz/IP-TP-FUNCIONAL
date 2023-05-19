@@ -28,6 +28,6 @@ ts8_redsocial4 = ([(1,"Maximiliano"), (2,"Lujan"),(3,"Mauricio"),(4, "Santiago")
 testSuite8 = test [
     " lesGustanLasMismasPublicaciones 1 - Red social con varios ususarios y una publicación sin me gusta" ~: (lesGustanLasMismasPublicaciones ts8_redsocial1 (2,"Lujan") (3,"Mauricio")) ~?= True,
     " lesGustanLasMismasPublicaciones 2 - Red social con varios usuarios y una publicación con un me gusta" ~: (lesGustanLasMismasPublicaciones ts8_redsocial2 (2,"Lujan") (3,"Mauricio")) ~?= False,
-    " lesGustanLasMismasPublicaciones 3 - Red social con varios usuarios y una publicación con dos me gusta" ~: (lesGustanLasMismasPublicaciones ts8_redsocial3 (2,"Lujan") (3,"Mauricio")) ~?= True
+    " lesGustanLasMismasPublicaciones 3 - Red social con varios usuarios y una publicación con dos me gusta" ~: (lesGustanLasMismasPublicaciones ts8_redsocial3 (2,"Lujan") (3,"Mauricio")) ~?= True,
     " lesGustanLasMismasPublicaciones 4 - Red social con varios usuarios y una publicación con dos me gusta" ~: (lesGustanLasMismasPublicaciones ts8_redsocial4 (2,"Lujan") (3,"Mauricio")) ~?= False
  ]
