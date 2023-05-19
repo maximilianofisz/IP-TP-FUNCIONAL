@@ -26,6 +26,6 @@ ts4_redsocial3 = ([(1,"Maximiliano"),(2,"Lujan"),(3,"Mauricio"),(4, "Santiago")]
 
 testSuite4 = test [
     "usuarioConMasAmigos 1 - Red social con un único usuario" ~: (usuarioConMasAmigos ts4_redsocial1) ~?= (1, "Maximiliano"),
-    "usuarioConMasAmigos 2 - Usuarios con misma cantidad de amigos, devuelve al primero que encuentra" ~: (usuarioConMasAmigos ts3_redsocial2) ~?= (1, "Maximiliano"),
-    "usuarioConMasAmigos 3 - Usuario con mayor cantidad de amigos" ~: (usuarioConMasAmigos ts3_redsocial3) ~?= (1, "Maximiliano")
+    "usuarioConMasAmigos 2 - Usuarios con misma cantidad de amigos, devuelve al primero que encuentra" ~: (usuarioConMasAmigos ts4_redsocial2) ~?= (1, "Maximiliano"),
+    "usuarioConMasAmigos 3 - Usuario con mayor cantidad de amigos" ~: (usuarioConMasAmigos ts4_redsocial3) ~?= (1, "Maximiliano")
  ]

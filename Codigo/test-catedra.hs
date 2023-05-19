@@ -2,6 +2,8 @@ import Test.HUnit
 import Solucion
 import TestSuite1
 import TestSuite2
+import TestSuite3
+import TestSuite4
 import TestSuite5
 
 
@@ -10,7 +12,7 @@ main = runTestTT todosLosTests
 
 --testSuite1 = test 
 
-todosLosTests = test [testSuite0, testSuite1, testSuite2, testSuite5] 
+todosLosTests = test [testSuite0, testSuite1, testSuite2, testSuite3, testSuite4, testSuite5] 
 testSuite0 = test [
     " nombresDeUsuarios 1" ~: (nombresDeUsuarios redA) ~?= ["Juan","Natalia","Pedro","Mariela"],
 
