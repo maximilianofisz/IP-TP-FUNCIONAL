@@ -10,13 +10,13 @@ import Solucion
 --iterarUsuarios (x:xs) = [nombreDeUsuario x] ++ iterarUsuarios xs
 -- Datos para test suite 1
 
-ts1_1redsocial = ([],[],[])
-ts1_2redsocial = ([(1,"Maximiliano")],[],[])
-ts1_3redsocial = ([(1,"Maximiliano"), (2,"Mauricio"),(3,"Lujan")],[],[])
+ts1_redsocial1 = ([],[],[])
+ts1_redsocial2 = ([(1,"Maximiliano")],[],[])
+ts1_redsocial3 = ([(1,"Maximiliano"), (2,"Mauricio"),(3,"Lujan")],[],[])
 
 testSuite1 = test [
-    " nombresDeUsuarios 1" ~: (nombresDeUsuarios ts1_1redsocial) ~?= [],
-    " nombresDeUsuarios 2" ~: (nombresDeUsuarios ts1_2redsocial) ~?= ["Maximiliano"],
-    " nombresDeUsuarios 3" ~: (nombresDeUsuarios ts1_3redsocial) ~?= ["Maximiliano", "Mauricio", "Lujan"]
+    " nombresDeUsuarios 1" ~: (nombresDeUsuarios ts1_redsocial1) ~?= [],
+    " nombresDeUsuarios 2" ~: (nombresDeUsuarios ts1_redsocial2) ~?= ["Maximiliano"],
+    " nombresDeUsuarios 3" ~: (nombresDeUsuarios ts1_redsocial3) ~?= ["Maximiliano", "Mauricio", "Lujan"]
  ]
 
