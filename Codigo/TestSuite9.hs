@@ -16,5 +16,5 @@ testSuite9 = test [
     "tieneUnSeguidorFiel 3 - Red social con un usuario, su publicacion y un segundo usuario que es su seguidor fiel" ~: (tieneUnSeguidorFiel ts9_redsocial3 (1, "Maximiliano")) ~?= True,
     "tieneUnSeguidorFiel 4 - Red social con un usuario y su publicacion y el usuario quiere ser su propio seguidor fiel " ~: (tieneUnSeguidorFiel ts9_redsocial4 (1, "Maximiliano")) ~?= False,
     "tieneUnSeguidorFiel 5 - Red social caso general con muchos usuarios, publicaciones, pero ningun amigo fiel " ~: (tieneUnSeguidorFiel ts9_redsocial5 (1, "Maximiliano")) ~?= False,
-    "tieneUnSeguidorFiel 5 - Red social caso general con muchos usuarios, publicaciones, pero un amigo fiel " ~: (tieneUnSeguidorFiel ts9_redsocial6 (1, "Maximiliano")) ~?= True
+    "tieneUnSeguidorFiel 6 - Red social caso general con muchos usuarios, publicaciones, pero un amigo fiel " ~: (tieneUnSeguidorFiel ts9_redsocial6 (1, "Maximiliano")) ~?= True
  ]
