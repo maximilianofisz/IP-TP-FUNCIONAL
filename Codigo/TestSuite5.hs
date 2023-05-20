@@ -3,9 +3,9 @@ import Test.HUnit
 import Solucion
 
 -- Datos para test suite 5
-ts5_1redsocial = ([],[],[])
-ts5_2redsocial = (ts5_usuariosRobertoCarlos,ts5_relacionesRobertoCarloIgualA10,[])
-ts5_3redsocial = (ts5_usuariosRobertoCarlos,ts5_relacionesRobertoCarloMayorA10,[])
+ts5_redsocial1 = ([],[],[])
+ts5_redsocial2 = (ts5_usuariosRobertoCarlos,ts5_relacionesRobertoCarloIgualA10,[])
+ts5_redsocial3 = (ts5_usuariosRobertoCarlos,ts5_relacionesRobertoCarloMayorA10,[])
 
 ts5_usuariosRobertoCarlos = [(1,"Maximiliano"),(2,"Mauricio"),(3,"Lujan"),(4,"Santiago"),(5,"Juan"),(6,"Carlos"),(7,"Bodoque"),(8,"Tulio"),(9,"Juanin"),(10,"Calcetin ConRombos Man"),(11, "El camarografo"),(12, "Ikari shinji kun")]
 
@@ -25,7 +25,7 @@ ts5_relacion10 = ((1, "Maximiliano"), (11, "El camarografo"))
 ts5_relacion11 = ((1, "Maximiliano"), (12, "Ikari shinji kun"))
 
 testSuite5 = test [
-    "estaRobertoCarlos 1 - Red social vacia" ~: (estaRobertoCarlos ts5_1redsocial) ~?= False,
-    "estaRobertoCarlos 2 - Red social sin un usuario con mas de 10 amigos" ~: (estaRobertoCarlos ts5_2redsocial) ~?= False,
-    "estaRobertoCarlos 3 - Red social con un usuario con mas de 10 amigos" ~: (estaRobertoCarlos ts5_3redsocial) ~?= True
+    "estaRobertoCarlos 1 - Red social vacia" ~: (estaRobertoCarlos ts5_redsocial1) ~?= False,
+    "estaRobertoCarlos 2 - Red social sin un usuario con mas de 10 amigos" ~: (estaRobertoCarlos ts5_redsocial2) ~?= False,
+    "estaRobertoCarlos 3 - Red social con un usuario con mas de 10 amigos" ~: (estaRobertoCarlos ts5_redsocial3) ~?= True
  ]
