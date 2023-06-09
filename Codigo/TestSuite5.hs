@@ -4,13 +4,15 @@ import Solucion
 
 -- Datos para test suite 5
 ts5_redsocial1 = ([],[],[])
-ts5_redsocial2 = (ts5_usuariosRobertoCarlos,ts5_relacionesRobertoCarloIgualA10,[])
-ts5_redsocial3 = (ts5_usuariosRobertoCarlos,ts5_relacionesRobertoCarloMayorA10,[])
+ts5_redsocial2 = ([(1,"Maximiliano")],[],[])
+ts5_redsocial2 = ([ts5_usuariosRobertoCarlos],[],[])
+ts5_redsocial4 = ([ts5_usuariosRobertoCarlos],[ts5_relacionesRobertoCarlosIgualA10],[])
+ts5_redsocial5 = ([ts5_usuariosRobertoCarlos],[ts5_relacionesRobertoCarlosMayorA10],[])
 
 ts5_usuariosRobertoCarlos = [(1,"Maximiliano"),(2,"Mauricio"),(3,"Lujan"),(4,"Santiago"),(5,"Juan"),(6,"Carlos"),(7,"Bodoque"),(8,"Tulio"),(9,"Juanin"),(10,"Calcetin ConRombos Man"),(11, "El camarografo"),(12, "Ikari shinji kun")]
 
-ts5_relacionesRobertoCarloIgualA10 = [ts5_relacion1, ts5_relacion2, ts5_relacion3, ts5_relacion4, ts5_relacion5, ts5_relacion6, ts5_relacion7, ts5_relacion8, ts5_relacion9, ts5_relacion10 ]
-ts5_relacionesRobertoCarloMayorA10 = [ts5_relacion1, ts5_relacion2, ts5_relacion3, ts5_relacion4, ts5_relacion5, ts5_relacion6, ts5_relacion7, ts5_relacion8, ts5_relacion9, ts5_relacion10, ts5_relacion11 ]
+ts5_relacionesRobertoCarlosIgualA10 = [ts5_relacion1, ts5_relacion2, ts5_relacion3, ts5_relacion4, ts5_relacion5, ts5_relacion6, ts5_relacion7, ts5_relacion8, ts5_relacion9, ts5_relacion10 ]
+ts5_relacionesRobertoCarlosMayorA10 = [ts5_relacion1, ts5_relacion2, ts5_relacion3, ts5_relacion4, ts5_relacion5, ts5_relacion6, ts5_relacion7, ts5_relacion8, ts5_relacion9, ts5_relacion10, ts5_relacion11 ]
 
 ts5_relacion1 = ((1,"Maximiliano"),(2,"Mauricio"))
 ts5_relacion2 = ((1, "Maximiliano"), (3, "Lujan"))
@@ -26,6 +28,8 @@ ts5_relacion11 = ((1, "Maximiliano"), (12, "Ikari shinji kun"))
 
 testSuite5 = test [
     "estaRobertoCarlos 1 - Red social vacia" ~: (estaRobertoCarlos ts5_redsocial1) ~?= False,
-    "estaRobertoCarlos 2 - Red social sin un usuario con mas de 10 amigos" ~: (estaRobertoCarlos ts5_redsocial2) ~?= False,
-    "estaRobertoCarlos 3 - Red social con un usuario con mas de 10 amigos" ~: (estaRobertoCarlos ts5_redsocial3) ~?= True
+    "estaRobertoCarlos 2 - Red social con un único usuario" ~: (estaRobertoCarlos ts5_redsocial2) ~?= False,
+    "estaRobertoCarlos 3 - Red social con varios usuarios sin relaciones" ~: (estaRobertoCarlos ts5_redsocial3) ~?= False,
+    "estaRobertoCarlos 4 - Red social sin un usuario con mas de 10 amigos" ~: (estaRobertoCarlos ts5_redsocial4) ~?= False,
+    "estaRobertoCarlos 5 - Red social con un usuario con mas de 10 amigos" ~: (estaRobertoCarlos ts5_redsocial5) ~?= True
  ]
