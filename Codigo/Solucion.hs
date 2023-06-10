@@ -116,14 +116,15 @@ comparadorDeCantidadDeAmigos red (primerUsuario:segundoUsuario:restoUsuarios) | 
 
 
 -- Ejercicio 5
--- Dada una red social nos devuelve True si Roberto Carlos pertenece a ella (un usuario con más de 10 amigos) o False si no pertenece a esta.
+-- Dada una red social nos devuelve True si Roberto Carlos pertenece a ella (un usuario con más de 10 amigos) 
+-- o False si no pertenece a esta.
 estaRobertoCarlos :: RedSocial -> Bool
 estaRobertoCarlos red | cantidadDeAmigos red (usuarioConMasAmigos red) > 10 = True
                       | otherwise = False
 
 
 -- Ejercicio 6
--- Dada una red social y un usuario y un usuario de esta, nos devuelve una lista de las publicaciones generadas por este usuario.
+-- Dada una red social y un usuario de esta, nos devuelve una lista de las publicaciones generadas por este usuario.
 publicacionesDe :: RedSocial -> Usuario -> [Publicacion]
 publicacionesDe (usuarios,relaciones,[]) usuario = []
 publicacionesDe (usuarios,relaciones,(primerPublicacion:restoPublicaciones)) usuario | nombreDeUsuario usuario == nombreDeUsuario (usuarioDePublicacion primerPublicacion) = [primerPublicacion] ++ publicacionesDe (usuarios,relaciones,restoPublicaciones) usuario
