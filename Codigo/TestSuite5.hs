@@ -5,9 +5,9 @@ import Solucion
 -- Datos para test suite 5
 ts5_redsocial1 = ([],[],[])
 ts5_redsocial2 = ([(1,"Maximiliano")],[],[])
-ts5_redsocial2 = ([ts5_usuariosRobertoCarlos],[],[])
-ts5_redsocial4 = ([ts5_usuariosRobertoCarlos],[ts5_relacionesRobertoCarlosIgualA10],[])
-ts5_redsocial5 = ([ts5_usuariosRobertoCarlos],[ts5_relacionesRobertoCarlosMayorA10],[])
+ts5_redsocial3 = (ts5_usuariosRobertoCarlos,[],[])
+ts5_redsocial4 = (ts5_usuariosRobertoCarlos,ts5_relacionesRobertoCarlosIgualA10,[])
+ts5_redsocial5 = (ts5_usuariosRobertoCarlos,ts5_relacionesRobertoCarlosMayorA10,[])
 
 ts5_usuariosRobertoCarlos = [(1,"Maximiliano"),(2,"Mauricio"),(3,"Lujan"),(4,"Santiago"),(5,"Juan"),(6,"Carlos"),(7,"Bodoque"),(8,"Tulio"),(9,"Juanin"),(10,"Calcetin ConRombos Man"),(11, "El camarografo"),(12, "Ikari shinji kun")]
 
